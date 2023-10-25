@@ -1,0 +1,21 @@
+.ofa__admin__logo{
+  padding: 24px;
+  font-style: 18px;
+  color: white;
+}
+
+.ofa__admin__asside{
+  height: 100vh;
+}
+
+.ofa__admin__header{
+  background-color: #001529 !important;
+  svg{
+    fill: white;
+  }
+}
+
+.ofa__admin__main{
+  overflow: auto;
+  height: calc(100vh - 64px);
+}
