@@ -18,6 +18,7 @@ const LoginPage = () => {
 
     Cookies.set(PORT_TOKEN, token);
     localStorage.setItem(PORT_USER, JSON.stringify(user));
+    request.defaults.headers.Authorization = `Bearer ${token}`;
     navigate("/dashboard");
     dispatch(setAuth(user));
   };
