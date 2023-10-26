@@ -71,6 +71,15 @@ const skillSlice = createSlice({
       .addCase(addSkill.rejected, (state) => {
         state.isModalLoading = false;
       })
+      .addCase(editSkill.pending, (state) => {
+        state.isModalLoading = true;
+      })
+      .addCase(editSkill.fulfilled, (state) => {
+        state.isModalLoading = false;
+      })
+      .addCase(editSkill.rejected, (state) => {
+        state.isModalLoading = false;
+      })
       .addCase(getSkill.pending, (state) => {
         state.loading = true;
         state.isModalLoading = true;

@@ -6,6 +6,7 @@ import {
   Flex,
   Form,
   Input,
+  InputNumber,
   Modal,
   Pagination,
   Space,
@@ -97,6 +98,7 @@ const SkillsPage = () => {
           Add skill
         </Button>
       </Flex>
+
       <Table
         scroll={{ x: 800 }}
         loading={loading}
@@ -152,6 +154,7 @@ const SkillsPage = () => {
           }}
         />
       </Table>
+
       {total > SKILLS_LIMIT ? (
         <Pagination
           total={total}
@@ -160,6 +163,7 @@ const SkillsPage = () => {
           onChange={(page) => setPage(page)}
         />
       ) : null}
+
       <Modal
         title={selected === null ? `Add new skill` : "Save skill"}
         maskClosable={false}
@@ -193,6 +197,22 @@ const SkillsPage = () => {
             <Input />
           </Form.Item>
           <Form.Item
+            name="percent"
+            label="Percent"
+            rules={[
+              {
+                required: true,
+                type: "number",
+                min: 0,
+                max: 100,
+                message: "Please fill!"
+              },
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+
+          {/* <Form.Item
             label="Percent"
             name="percent"
             rules={[
@@ -203,7 +223,7 @@ const SkillsPage = () => {
             ]}
           >
             <Input />
-          </Form.Item>
+          </Form.Item> */}
         </Form>
       </Modal>
     </Fragment>
