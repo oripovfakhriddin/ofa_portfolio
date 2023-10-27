@@ -1,6 +1,17 @@
-.form__box{
-  height: 100vh;
+.register__title{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: 500;
+  text-align: center;
+  font-size: 50px;
+  color: aqua;
+}
+
+.form__register__box{
   form{
     width: 500px !important;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
+

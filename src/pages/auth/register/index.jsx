@@ -1,12 +1,32 @@
 import { Fragment } from "react";
 import "./style.scss";
 import { Button, Flex, Form, Input } from "antd";
+import request from "../../../server/request";
+import Cookies from "js-cookie";
+import { PORT_TOKEN, PORT_USER } from "../../../constants";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuth } from "../../../redux/slice/auth";
 const RegisterPage = () => {
-  const onFinish = () => {};
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onFinish = async (values) => {
+    const {
+      data: { token, user },
+    } = await request.post("auth/register", values);
+
+    Cookies.set(PORT_TOKEN, token);
+    localStorage.setItem(PORT_USER, JSON.stringify(user));
+    request.defaults.headers.Authorization = `Bearer ${token}`;
+    navigate("/dashboard");
+    dispatch(setAuth(user));
+  };
 
   return (
     <Fragment>
-      <Flex className="form__box" align="center" justify="center">
+      <h1 className="register__title">Register</h1>
+      <Flex className="form__register__box" align="center" justify="center">
         <Form
           name="basic"
           labelCol={{
@@ -24,6 +44,32 @@ const RegisterPage = () => {
           onFinish={onFinish}
           autoComplete="off"
         >
+          <Form.Item
+            label="Firstname"
+            name="firstName"
+            rules={[
+              {
+                required: true,
+                message: "Please input your firstname!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Lastname"
+            name="lastName"
+            rules={[
+              {
+                required: true,
+                message: "Please input your lastname!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
           <Form.Item
             label="Username"
             name="username"
@@ -56,7 +102,7 @@ const RegisterPage = () => {
             }}
           >
             <Button style={{ width: "100%" }} type="primary" htmlType="submit">
-              Login
+              Register
             </Button>
           </Form.Item>
         </Form>

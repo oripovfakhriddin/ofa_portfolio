@@ -16,6 +16,8 @@ const LoginPage = () => {
       data: { token, user },
     } = await request.post("auth/login", values);
 
+    console.log(token, " va ", user);
+
     Cookies.set(PORT_TOKEN, token);
     localStorage.setItem(PORT_USER, JSON.stringify(user));
     request.defaults.headers.Authorization = `Bearer ${token}`;
@@ -25,6 +27,7 @@ const LoginPage = () => {
 
   return (
     <Fragment>
+      <h1 className="login__title">Login</h1>
       <Flex className="form__box" align="center" justify="center">
         <Form
           name="basic"
