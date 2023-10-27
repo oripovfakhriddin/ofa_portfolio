@@ -174,7 +174,7 @@ const SkillsPage = () => {
         onCancel={closeModal}
       >
         <Form
-          name="category"
+          name="skills"
           autoComplete="off"
           labelCol={{
             span: 24,
