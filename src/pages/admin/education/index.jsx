@@ -182,16 +182,16 @@ const EducationPage = () => {
         />
       ) : null}
       <Modal
-        title={selected === null ? `Add new skill` : "Save skill"}
+        title={selected === null ? `Add new education` : "Save education"}
         maskClosable={false}
         confirmLoading={isModalLoading}
-        okText={selected === null ? "Add skill" : "Save skill"}
+        okText={selected === null ? "Add education" : "Save education"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={closeModal}
       >
         <Form
-          name="category"
+          name="education"
           autoComplete="off"
           labelCol={{
             span: 24,
