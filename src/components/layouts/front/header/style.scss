@@ -1,0 +1,32 @@
+header{
+  background-color: aqua;
+}
+
+.header__container{
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  .header__logo__box{
+    width: 200px;
+    
+  }
+
+  .auth__box{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    a{
+      font-size: 20px ;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border:  1px solid black;
+      transition: 0.5s;
+      &:hover{
+        background-color: black;
+        color: aliceblue;
+      }
+    }
+  }
+}

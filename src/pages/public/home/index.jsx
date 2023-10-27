@@ -1,22 +1,12 @@
 import { Fragment } from "react";
 import "./style.scss";
-import { Button } from "antd";
-import { useNavigate } from "react-router-dom";
 const HomePage = () => {
-  const navigate = useNavigate();
-  const loginNavigate = () => {
-    navigate("/login")
-  };
-  const registerNavigate = () => {
-    navigate("/register")
-  };
   return (
     <Fragment>
-      <section>
+      <section id="home">
         <div className="container">
-          <div className="home__container">
-            <Button onClick={loginNavigate}>Login</Button>
-            <Button onClick={registerNavigate}>Register</Button>
+          <div className="hero__container">
+            <h1 className="hero__title">I am <span>WEB DEVELOPER</span></h1>
           </div>
         </div>
       </section>
