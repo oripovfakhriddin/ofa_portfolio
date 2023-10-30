@@ -13,3 +13,7 @@ export const changeDate = (date) => {
 export const getImage = (data) => {
   return `${ENDPOINT}upload/${data?._id}.${data?.name?.split(".")[1]}`;
 };
+
+export const getUsersImage = (data) => {
+  return `${ENDPOINT}upload/${data}`;
+};

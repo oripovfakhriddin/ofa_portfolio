@@ -9,17 +9,27 @@ import portfolioQuery, {
   portfolioName,
   portfolioReducer,
 } from "../queries/portfolios";
+import usersQuery, { usersName, usersReducer } from "../queries/users";
 
 const reducer = {
   [authName]: authReducer,
   [skillName]: skillReducer,
   [educationName]: educationReducer,
   [portfolioName]: portfolioReducer,
+  [usersName]: usersReducer,
 };
+
+// const allMiddleware = {
+//   middleware: (getetDefaultMiddleware) =>
+//     getetDefaultMiddleware().concat(portfolioQuery.middleware),
+//   middleware1: (getetDefaultMiddleware) =>
+//     getetDefaultMiddleware().concat(usersQuery.middleware),
+// };
+
 const store = configureStore({
   reducer,
   middleware: (getetDefaultMiddleware) =>
-    getetDefaultMiddleware().concat(portfolioQuery.middleware),
+    getetDefaultMiddleware().concat(usersQuery.middleware),
 });
 
 const StoreProvider = ({ children }) => {
