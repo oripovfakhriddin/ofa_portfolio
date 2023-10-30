@@ -19,17 +19,13 @@ const reducer = {
   [usersName]: usersReducer,
 };
 
-// const allMiddleware = {
-//   middleware: (getetDefaultMiddleware) =>
-//     getetDefaultMiddleware().concat(portfolioQuery.middleware),
-//   middleware1: (getetDefaultMiddleware) =>
-//     getetDefaultMiddleware().concat(usersQuery.middleware),
-// };
-
 const store = configureStore({
   reducer,
   middleware: (getetDefaultMiddleware) =>
-    getetDefaultMiddleware().concat(usersQuery.middleware),
+    getetDefaultMiddleware().concat([
+      usersQuery.middleware,
+      portfolioQuery.middleware,
+    ]),
 });
 
 const StoreProvider = ({ children }) => {
