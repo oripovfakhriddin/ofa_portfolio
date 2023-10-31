@@ -55,6 +55,11 @@
   height: calc(100vh - 84px) !important;
 }
 
+.notification{
+  background-color: transparent;
+  border: none;
+}
+
 .ofa__notification__btn {
   cursor: pointer;
   transition: 0.5s;

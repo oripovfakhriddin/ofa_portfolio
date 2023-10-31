@@ -14,13 +14,31 @@ import {
   LinkedinOutlined,
 } from "@ant-design/icons";
 
-import { Layout, Menu, Button, theme, Modal, Flex, Badge, Avatar } from "antd";
+import {
+  Layout,
+  Menu,
+  Button,
+  theme,
+  Modal,
+  Flex,
+  Badge,
+  Avatar,
+  Drawer,
+  Table,
+  Pagination,
+  message,
+} from "antd";
 
 import "./style.scss";
 import Cookies from "js-cookie";
-import { PORT_TOKEN, PORT_USER } from "../../../constants";
+import { PORT_TOKEN, PORT_USER, USERS_LIMIT } from "../../../constants";
 import { removeAuth } from "../../../redux/slice/auth";
 import { useDispatch } from "react-redux";
+import {
+  useGetUserMutation,
+  useGetUsersQuery,
+  useUpgradeUserMutation,
+} from "../../../redux/queries/users";
 
 const { Header, Sider, Content } = Layout;
 
@@ -29,7 +47,22 @@ const AdminLayout = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
+  const [page, setPage] = useState(1);
+  const [open, setOpen] = useState(false);
 
+  const params = {
+    page,
+    limit: USERS_LIMIT,
+    role: "user",
+  };
+
+  const {
+    data: { users, total } = { users: [], total: 0 },
+    isFetching,
+    refetch,
+  } = useGetUsersQuery({ ...params });
+  const [upgradeUser] = useUpgradeUserMutation();
+  const [getUser] = useGetUserMutation();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -41,6 +74,50 @@ const AdminLayout = () => {
     dispatch(removeAuth());
   };
 
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  const upgradeToClient = async (id) => {
+    const values = await getUser(id);
+    values.role = "client";
+    await upgradeUser({ id, body: values });
+    refetch();
+    message.success("User upgraded to client");
+  };
+
+  const columns = [
+    {
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
+    },
+    {
+      title: "Action",
+      dataIndex: "data",
+      key: "data",
+      render: (_, data) => {
+        return (
+          <Button
+            type="primary"
+            onClick={() => {
+              Modal.confirm({
+                title: "Do you want to upgrade this user?",
+                onOk: () => {
+                  upgradeToClient(data?._id);
+                },
+              });
+            }}
+          >
+            Upgrade
+          </Button>
+        );
+      },
+    },
+  ];
   return (
     <Layout>
       <Sider
@@ -198,21 +275,43 @@ const AdminLayout = () => {
               }}
             />
             <Flex>
-              <Badge count={99}>
-                <Avatar
-                  className="ofa__notification__btn"
-                  style={{
-                    width: 64,
-                    height: 40,
-                  }}
-                  icon={<NotificationOutlined style={{ fontSize: "26px" }} />}
-                  shape="square"
-                  size="large"
-                />
-              </Badge>
-              
+              <button className="notification" onClick={showDrawer}>
+                <Badge count={total}>
+                  <Avatar
+                    className="ofa__notification__btn"
+                    style={{
+                      width: 64,
+                      height: 40,
+                    }}
+                    icon={<NotificationOutlined style={{ fontSize: "26px" }} />}
+                    shape="square"
+                    size="large"
+                  />
+                </Badge>
+              </button>
             </Flex>
           </Flex>
+          <Drawer
+            title="Basic Drawer"
+            placement="right"
+            onClose={onClose}
+            open={open}
+          >
+            <Table
+              pagination={false}
+              columns={columns}
+              loading={isFetching}
+              dataSource={users}
+            />
+            {total > USERS_LIMIT ? (
+              <Pagination
+                total={total}
+                pageSize={USERS_LIMIT}
+                current={page}
+                onChange={(page) => setPage(page)}
+              />
+            ) : null}
+          </Drawer>
         </Header>
         <Content
           className="ofa__admin__main"

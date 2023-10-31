@@ -43,6 +43,13 @@ const usersQuery = createApi({
         body,
       }),
     }),
+    upgradeUser: builder.mutation({
+      query: ({ id, body }) => ({
+        method: "PUT",
+        url: `users/${id}`,
+        body,
+      }),
+    }),
     deleteUser: builder.mutation({
       query: (id) => ({
         method: "DELETE",
@@ -68,4 +75,5 @@ export const {
   useAddUserMutation,
   useEditUserMutation,
   useDeleteUserMutation,
+  useUpgradeUserMutation
 } = usersQuery;
