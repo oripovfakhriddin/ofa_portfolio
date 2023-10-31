@@ -1,49 +1,48 @@
-.ofa__admin__logo{
+.ofa__admin__logo {
   padding: 24px;
   font-style: 18px;
   color: white;
 
-  .ofa__admin__icon{
-    svg{
+  .ofa__admin__icon {
+    svg {
       width: 34px;
       height: 34px;
     }
   }
 }
 
-.ofa__admin__asside{
+.ofa__admin__asside {
   height: 100vh;
-  .ant-menu-item{
+  .ant-menu-item {
     font-size: 16px;
-    svg{
+    svg {
       width: 20px;
       height: 20px;
     }
   }
-  .logout__btn{
+  .logout__btn {
     background-color: red !important;
     color: aliceblue !important;
   }
-  .ant-menu-item-selected{
+  .ant-menu-item-selected {
     color: red;
     background-color: aliceblue;
   }
 }
 
-.ofa__admin__header{
+.ofa__admin__header {
   display: flex;
   flex-direction: column;
-  // align-items: center;
   justify-content: space-between;
   height: 90px;
   background-color: #001529 !important;
-  .ofa__collapsed__btn{
-    svg{
+  .ofa__collapsed__btn {
+    svg {
       fill: white;
     }
-    &:hover{
+    &:hover {
       background-color: aliceblue !important;
-      svg{
+      svg {
         fill: #001529;
       }
     }
@@ -51,21 +50,37 @@
   padding-right: 20px !important;
 }
 
-.ofa__admin__main{
+.ofa__admin__main {
   overflow: auto;
   height: calc(100vh - 84px) !important;
 }
 
-.ofa__notification__btn{
-  transition: 1s;
+.ofa__notification__btn {
+  cursor: pointer;
+  transition: 0.5s;
   background-color: #001529;
-  svg{
+  svg {
     fill: aliceblue;
   }
-  &:hover{
+  &:hover {
     background-color: aliceblue !important;
-    svg{
-      fill: #001529;
+    svg {
+      fill: #1677ff;
     }
   }
+}
+
+@media only screen and (max-width: 600px) {
+  // .ofa__admin__logo{
+  //   padding: 14px;
+  // }
+
+  // .ofa__admin__asside{
+
+  //   .ant-menu-inline-collapsed{
+  //       max-width: 60px !important;
+  //       min-width: 60px !important;
+  //   }
+
+  // }
 }

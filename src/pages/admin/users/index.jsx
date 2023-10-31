@@ -125,9 +125,15 @@ const UsersPage = () => {
 
   return (
     <Fragment>
-      <Flex justify="space-between" gap={36} align="center">
-        <h1>Users ({total})</h1>
+      <Flex
+        justify="space-between"
+        gap={36}
+        className="users__header__box"
+        align="center"
+      >
+        <h1 className="users__title">Users</h1>
         <Input
+          className="users__search"
           type="text"
           value={search}
           name="search"
@@ -136,6 +142,7 @@ const UsersPage = () => {
           placeholder="Searching..."
         />
         <Select
+          className="users__role__filter"
           value={isRole}
           onChange={(value) => {
             handleChange(value);
@@ -165,6 +172,47 @@ const UsersPage = () => {
         <Button onClick={showModal} type="primary">
           Add users
         </Button>
+      </Flex>
+      <Flex className="users__search__box">
+        <Input
+          value={search}
+          name="search"
+          onChange={handleSearch}
+          style={{ width: "100%", flexGrow: 1 }}
+          placeholder="Searching..."
+        />
+      </Flex>
+      <Flex className="users__role__filter__box">
+        <Select
+          value={isRole}
+          onChange={(value) => {
+            handleChange(value);
+          }}
+          style={{
+            width: 120,
+          }}
+          options={[
+            {
+              value: "all",
+              label: "All",
+            },
+            {
+              value: "admin",
+              label: "Admin",
+            },
+            {
+              value: "client",
+              label: "Client",
+            },
+            {
+              value: "user",
+              label: "User",
+            },
+          ]}
+        />
+      </Flex>
+      <Flex className="users__count__box">
+        <p>All users count: {total}</p>
       </Flex>
 
       <Table

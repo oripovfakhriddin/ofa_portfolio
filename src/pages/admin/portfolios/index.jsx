@@ -107,6 +107,7 @@ const PortfoliosPage = () => {
   const handleDelete = async (id) => {
     await deletePortfolio(id);
     refetch();
+    setPage(1)
   };
 
   const selectBefore = (
@@ -118,9 +119,15 @@ const PortfoliosPage = () => {
 
   return (
     <Fragment>
-      <Flex justify="space-between" gap={36} align="center">
-        <h1>Portfolios ({total})</h1>
+      <Flex
+        justify="space-between"
+        gap={36}
+        className="portfolios__header__box"
+        align="center"
+      >
+        <h1 className="portfolios__title">Portfolios</h1>
         <Input
+          className="portfolios__search"
           type="text"
           value={search}
           name="search"
@@ -128,9 +135,21 @@ const PortfoliosPage = () => {
           style={{ width: "auto", flexGrow: 1 }}
           placeholder="Searching..."
         />
-        <Button onClick={showModal} type="dashed">
+        <Button onClick={showModal} type="primary">
           Add porfolios
         </Button>
+      </Flex>
+      <Flex className="portfolios__search__box">
+        <Input
+          value={search}
+          name="search"
+          onChange={handleSearch}
+          style={{ width: "100%", flexGrow: 1 }}
+          placeholder="Searching..."
+        />
+      </Flex>
+      <Flex className="portfolios__count__box">
+        <p>All portfolios count: {total}</p>
       </Flex>
 
       <Table
@@ -187,7 +206,12 @@ const PortfoliosPage = () => {
                   danger
                   type="primary"
                   onClick={() => {
-                    handleDelete(data?._id);
+                    Modal.confirm({
+                      title: "Do you want to delete this portfolio?",
+                      onOk: () => {
+                        handleDelete(data?._id);
+                      },
+                    });
                   }}
                 >
                   Delete

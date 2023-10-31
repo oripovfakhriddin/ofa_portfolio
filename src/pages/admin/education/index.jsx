@@ -81,6 +81,7 @@ const EducationPage = () => {
   const handleDelete = async (id) => {
     await dispatch(deleteEducation(id));
     reFetch();
+    setPage(1);
   };
 
   const handleEdit = async (id) => {
@@ -140,7 +141,12 @@ const EducationPage = () => {
           </Button>
           <Button
             onClick={() => {
-              handleDelete(data?._id);
+              Modal.confirm({
+                title: "Do you want to delete this education?",
+                onOk: () => {
+                  handleDelete(data?._id);
+                },
+              });
             }}
             danger
             type="primary"
@@ -153,18 +159,36 @@ const EducationPage = () => {
   ];
   return (
     <Fragment>
-      <Flex justify="space-between" gap={36} align="center">
-        <h1>Education ({total})</h1>
+      <Flex
+        justify="space-between"
+        gap={36}
+        className="education__header__box"
+        align="center"
+      >
+        <h1 className="education__title">Education</h1>
         <Input
+          className="search__education"
           value={search}
           name="search"
           onChange={handleSearch}
           style={{ width: "auto", flexGrow: 1 }}
           placeholder="Searching..."
         />
-        <Button onClick={showModal} type="dashed">
+        <Button onClick={showModal} type="primary">
           Add education
         </Button>
+      </Flex>
+      <Flex className="education__search__box">
+        <Input
+          value={search}
+          name="search"
+          onChange={handleSearch}
+          style={{ width: "100%", flexGrow: 1 }}
+          placeholder="Searching..."
+        />
+      </Flex>
+      <Flex className="education__count__box">
+        <p>All education count: {total}</p>
       </Flex>
       <Table
         pagination={false}

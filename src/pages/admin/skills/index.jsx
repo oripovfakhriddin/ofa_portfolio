@@ -85,9 +85,15 @@ const SkillsPage = () => {
 
   return (
     <Fragment>
-      <Flex justify="space-between" gap={36} align="center">
-        <h1>Skills ({total})</h1>
+      <Flex
+        justify="space-between"
+        gap={36}
+        className="skills__header__box"
+        align="center"
+      >
+        <h1 className="skills__title">Skills</h1>
         <Input
+          className="skills__search"
           value={search}
           name="search"
           onChange={handleSearch}
@@ -97,6 +103,18 @@ const SkillsPage = () => {
         <Button onClick={showModal} type="dashed">
           Add skill
         </Button>
+      </Flex>
+      <Flex className="skills__search__box">
+        <Input
+          value={search}
+          name="search"
+          onChange={handleSearch}
+          style={{ width: "100%", flexGrow: 1 }}
+          placeholder="Searching..."
+        />
+      </Flex>
+      <Flex className="skills__count__box">
+        <p>All skills count: {total}</p>
       </Flex>
 
       <Table
@@ -144,7 +162,12 @@ const SkillsPage = () => {
                   danger
                   type="primary"
                   onClick={() => {
-                    handleDelete(data?._id);
+                    Modal.confirm({
+                      title: "Do you want to delete this skill?",
+                      onOk: () => {
+                        handleDelete(data?._id);
+                      },
+                    });
                   }}
                 >
                   Delete
@@ -205,7 +228,7 @@ const SkillsPage = () => {
                 type: "number",
                 min: 0,
                 max: 100,
-                message: "Please fill!"
+                message: "Please fill!",
               },
             ]}
           >
