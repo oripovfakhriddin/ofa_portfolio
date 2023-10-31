@@ -38,12 +38,14 @@ const UsersPage = () => {
   const [loadingPhoto, setLoadingPhoto] = useState(false);
   const [form] = Form.useForm();
   let params = {
-    page,
     search,
+    page,
+    limit: USERS_LIMIT,
   };
   if (isRole !== "all") {
     params = {
       page,
+      limit: USERS_LIMIT,
       search,
       role: isRole,
     };
@@ -212,7 +214,7 @@ const UsersPage = () => {
         />
       </Flex>
       <Flex className="users__count__box">
-        <p>All users count: {total}</p>
+        {total === 0 ? <p>Users not</p> : <p>All users count: {total}</p>}
       </Flex>
 
       <Table

@@ -114,7 +114,7 @@ const SkillsPage = () => {
         />
       </Flex>
       <Flex className="skills__count__box">
-        <p>All skills count: {total}</p>
+        {total === 0 ? <p>Skills not</p> : <p>All skills count: {total}</p>}
       </Flex>
 
       <Table

@@ -40,7 +40,7 @@ const PortfoliosPage = () => {
     data: { portfolios, total } = { portfolios: [], total: 0 },
     isFetching,
     refetch,
-  } = useGetPortfoliosQuery({ page, search });
+  } = useGetPortfoliosQuery({ page, search, limit: PORTFOLIOS_LIMIT });
   const [getPortfolio] = useGetPortfolioMutation();
   const [uploadPhoto] = useUploadPhotoMutation();
   const [addPortfolio] = useAddPortfolioMutation();
@@ -107,7 +107,7 @@ const PortfoliosPage = () => {
   const handleDelete = async (id) => {
     await deletePortfolio(id);
     refetch();
-    setPage(1)
+    setPage(1);
   };
 
   const selectBefore = (
@@ -149,7 +149,11 @@ const PortfoliosPage = () => {
         />
       </Flex>
       <Flex className="portfolios__count__box">
-        <p>All portfolios count: {total}</p>
+        {total === 0 ? (
+          <p>Portfolios not</p>
+        ) : (
+          <p>All portfolios count: {total}</p>
+        )}
       </Flex>
 
       <Table

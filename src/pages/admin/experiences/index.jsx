@@ -36,7 +36,7 @@ const ExperiencesPage = () => {
     data: { experiences, total } = { experiences: [], total: 0 },
     isFetching,
     refetch,
-  } = useGetExperiencesQuery({ page, search });
+  } = useGetExperiencesQuery({ page, search, limit: EXPERIENCES_LIMIT });
 
   const [getExperience] = useGetExperienceMutation();
   const [addExperience] = useAddExperienceMutation();
@@ -126,7 +126,11 @@ const ExperiencesPage = () => {
         />
       </Flex>
       <Flex className="experience__count__box">
-        <p>All Experiences count: {total}</p>
+        {total === 0 ? (
+          <p>Experiences not</p>
+        ) : (
+          <p>All Experiences count: {total}</p>
+        )}
       </Flex>
 
       <Table

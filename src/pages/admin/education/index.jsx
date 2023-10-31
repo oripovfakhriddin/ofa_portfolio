@@ -188,7 +188,11 @@ const EducationPage = () => {
         />
       </Flex>
       <Flex className="education__count__box">
-        <p>All education count: {total}</p>
+        {total === 0 ? (
+          <p>Education not</p>
+        ) : (
+          <p>All education count: {total}</p>
+        )}
       </Flex>
       <Table
         pagination={false}

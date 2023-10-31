@@ -197,18 +197,21 @@ const AdminLayout = () => {
                 height: 64,
               }}
             />
-            <Badge count={99}>
-              <Avatar
-                className="ofa__notification__btn"
-                style={{
-                  width: 64,
-                  height: 40,
-                }}
-                icon={<NotificationOutlined style={{ fontSize: "26px" }} />}
-                shape="square"
-                size="large"
-              />
-            </Badge>
+            <Flex>
+              <Badge count={99}>
+                <Avatar
+                  className="ofa__notification__btn"
+                  style={{
+                    width: 64,
+                    height: 40,
+                  }}
+                  icon={<NotificationOutlined style={{ fontSize: "26px" }} />}
+                  shape="square"
+                  size="large"
+                />
+              </Badge>
+              
+            </Flex>
           </Flex>
         </Header>
         <Content
