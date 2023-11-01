@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -12,7 +14,7 @@ import {
   ReadOutlined,
   NotificationOutlined,
   LinkedinOutlined,
-  UserOutlined
+  UserOutlined,
 } from "@ant-design/icons";
 
 import {
@@ -30,16 +32,14 @@ import {
   message,
 } from "antd";
 
-import "./style.scss";
-import Cookies from "js-cookie";
-import { PORT_TOKEN, PORT_USER, USERS_LIMIT } from "../../../constants";
 import { removeAuth } from "../../../redux/slice/auth";
-import { useDispatch } from "react-redux";
 import {
   useGetUserMutation,
   useGetUsersQuery,
   useUpgradeUserMutation,
 } from "../../../redux/queries/users";
+import { PORT_TOKEN, PORT_USER, USERS_LIMIT } from "../../../constants";
+import "./style.scss";
 
 const { Header, Sider, Content } = Layout;
 
@@ -292,7 +292,7 @@ const AdminLayout = () => {
               </button>
               <div className="account__btn__box">
                 <NavLink to="/account">
-                  <Button  className="account__btn" icon={<UserOutlined />} />
+                  <Button className="account__btn" icon={<UserOutlined />} />
                 </NavLink>
               </div>
             </Flex>

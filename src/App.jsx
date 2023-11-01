@@ -35,7 +35,7 @@ function App() {
               isAuthenticated && user?.role === "admin" ? (
                 <AdminLayout />
               ) : (
-                <Navigate to="/login" />
+                <Navigate to="/" />
               )
             }
           >

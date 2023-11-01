@@ -2,7 +2,11 @@ import { Fragment } from "react";
 import { Flex } from "antd";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { authName } from "../../../../redux/slice/auth";
 const Header = () => {
+  const { isAuthenticated } = useSelector((state) => state[authName]);
+
   return (
     <Fragment>
       <header>
@@ -15,7 +19,6 @@ const Header = () => {
           >
             <div className="header__logo__box">
               <NavLink>
-                {" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 84 21"
@@ -69,12 +72,21 @@ const Header = () => {
                       points="3 3 0 3 0 18 9 18 9 15 3 15"
                     ></polygon>
                   </g>
-                </svg>{" "}
+                </svg>
               </NavLink>
             </div>
-            <div className="auth__box" >
-              <NavLink to="/login">Login</NavLink>
-              <NavLink to="/register">Register</NavLink>
+            <div className="auth__box">
+              {isAuthenticated ? (
+                <Fragment>
+                  <NavLink to="/account">Account</NavLink>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/register">Register</NavLink>
+                </Fragment>
+              )}
             </div>
           </Flex>
         </div>

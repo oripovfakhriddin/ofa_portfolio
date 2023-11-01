@@ -1,3 +1,15 @@
+
+
+.info__box__all{
+  margin-top: 30px;
+}
+
+.info__box__first{
+  display: grid;
+  grid-template-columns: 0.5fr 1fr !important;
+  gap: 24px;
+}
+
 .image__box {
   max-width: 400px;
   min-width: 200px;
@@ -29,8 +41,9 @@
 .account__form__box {
   display: grid;
   grid-template-columns: 0.5fr 1fr;
-  gap: 12px;
-  .account__form {
+  gap: 24px;
+  .account__form .account__form__second {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
