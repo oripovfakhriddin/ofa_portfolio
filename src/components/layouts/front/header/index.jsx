@@ -1,11 +1,21 @@
 import { Fragment } from "react";
-import { Flex } from "antd";
+import { Flex, Modal } from "antd";
 import "./style.scss";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { authName } from "../../../../redux/slice/auth";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authName, removeAuth } from "../../../../redux/slice/auth";
+import Cookies from "js-cookie";
+import { PORT_TOKEN, PORT_USER } from "../../../../constants";
 const Header = () => {
   const { isAuthenticated } = useSelector((state) => state[authName]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logOutFunc = () => {
+    Cookies.remove(PORT_TOKEN);
+    localStorage.removeItem(PORT_USER);
+    navigate("/");
+    dispatch(removeAuth());
+  };
 
   return (
     <Fragment>
@@ -80,6 +90,18 @@ const Header = () => {
                 <Fragment>
                   <NavLink to="/account">Account</NavLink>
                   <NavLink to="/dashboard">Dashboard</NavLink>
+                  <button
+                    onClick={() => {
+                      Modal.confirm({
+                        title: "Do you want to exit ?",
+                        onOk: () => {
+                          logOutFunc();
+                        },
+                      });
+                    }}
+                  >
+                    Log Out
+                  </button>
                 </Fragment>
               ) : (
                 <Fragment>

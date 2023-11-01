@@ -16,7 +16,7 @@ header{
     justify-content: space-between;
     gap: 20px;
 
-    a{
+    a, button{
       font-size: 20px ;
       color: black;
       padding: 10px 20px;
@@ -24,9 +24,12 @@ header{
       border:  1px solid black;
       transition: 0.5s;
       &:hover{
-        background-color: black;
-        color: aliceblue;
+        background-color: aliceblue;
+        color: black;
       }
+    }
+    button {
+      background-color: red;
     }
   }
 }
