@@ -23,6 +23,7 @@ import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
 import { changeDate, getUsersImage } from "../../../utils";
 
 import "./style.scss";
+import ChangePassword from "../../../components/form/change_password";
 
 const AccountPage = () => {
   const [tabActive, setTabActive] = useState("1");
@@ -269,7 +270,11 @@ const AccountPage = () => {
                               <TextArea />
                             </Form.Item>
                           </div>
-                          <Button style={{width: "100%"}} type="primary" htmlType="submit">
+                          <Button
+                            style={{ width: "100%" }}
+                            type="primary"
+                            htmlType="submit"
+                          >
                             Send
                           </Button>
                         </Form>
@@ -282,7 +287,11 @@ const AccountPage = () => {
                 className: "info__box__all",
                 label: "Change password",
                 key: "3",
-                children: "Tab 3",
+                children: (
+                  <Fragment>
+                    <ChangePassword />
+                  </Fragment>
+                ),
               },
             ]}
             onChange={(key) => {

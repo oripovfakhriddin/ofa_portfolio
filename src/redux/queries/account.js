@@ -33,6 +33,13 @@ const accountQuery = createApi({
         body: data,
       }),
     }),
+    changePassword: builder.mutation({
+      query: (body) => ({
+        method: "PUT",
+        url: "auth/updatepassword",
+        body
+      }),
+    }),
   }),
 });
 
@@ -40,4 +47,9 @@ const { reducerPath: accountName, reducer: accountReducer } = accountQuery;
 
 export { accountQuery as default, accountName, accountReducer };
 
-export const { useGetAccountQuery, useEditAccountMutation, useUploadPhotoMutation } = accountQuery;
+export const {
+  useGetAccountQuery,
+  useEditAccountMutation,
+  useUploadPhotoMutation,
+  useChangePasswordMutation
+} = accountQuery;
