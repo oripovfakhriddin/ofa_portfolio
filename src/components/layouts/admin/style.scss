@@ -60,6 +60,19 @@
   border: none;
 }
 
+
+.account__btn__box{
+  width: 64px;
+  .account__btn{
+    width: 100%;
+    height: 100%;
+    svg{
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
 .ofa__notification__btn {
   cursor: pointer;
   transition: 0.5s;

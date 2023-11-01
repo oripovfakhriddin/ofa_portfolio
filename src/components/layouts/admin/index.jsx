@@ -12,6 +12,7 @@ import {
   ReadOutlined,
   NotificationOutlined,
   LinkedinOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 
 import {
@@ -274,7 +275,7 @@ const AdminLayout = () => {
                 height: 64,
               }}
             />
-            <Flex>
+            <Flex gap={24}>
               <button className="notification" onClick={showDrawer}>
                 <Badge count={total}>
                   <Avatar
@@ -289,10 +290,15 @@ const AdminLayout = () => {
                   />
                 </Badge>
               </button>
+              <div className="account__btn__box">
+                <NavLink to="/account">
+                  <Button  className="account__btn" icon={<UserOutlined />} />
+                </NavLink>
+              </div>
             </Flex>
           </Flex>
           <Drawer
-            title="Basic Drawer"
+            title="Upgrade user"
             placement="right"
             onClose={onClose}
             open={open}

@@ -13,6 +13,7 @@ import PortfoliosPage from "./pages/admin/portfolios";
 import { useSelector } from "react-redux";
 import { authName } from "./redux/slice/auth";
 import FrontLayout from "./components/layouts/front/layout";
+import AccountPage from "./pages/public/account";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state[authName]);
@@ -25,6 +26,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/account" element={<AccountPage />} />
           </Route>
 
           <Route

@@ -14,6 +14,7 @@ import experiencesQuery, {
   experiencesName,
   experiencesReducer,
 } from "../queries/experiences";
+import accountQuery, { accountName, accountReducer } from "../queries/account";
 
 const reducer = {
   [authName]: authReducer,
@@ -22,6 +23,7 @@ const reducer = {
   [portfolioName]: portfolioReducer,
   [usersName]: usersReducer,
   [experiencesName]: experiencesReducer,
+  [accountName]: accountReducer,
 };
 
 const store = configureStore({
@@ -31,6 +33,7 @@ const store = configureStore({
       usersQuery.middleware,
       portfolioQuery.middleware,
       experiencesQuery.middleware,
+      accountQuery.middleware,
     ]),
 });
 
